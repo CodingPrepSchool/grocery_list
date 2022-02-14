@@ -1,0 +1,39 @@
+<DOCTYPE>
+    <html>        
+        <br>
+        <table>
+            <thead>
+                <td><strong>Completed</strong></td>
+                <td><strong>Item Name</strong></td>
+                <td><strong>Quantity</strong></td>
+                <td><strong>Store Name</strong></td>
+                <td><strong>Store Address</strong></td>
+            </thead>
+            <br>
+        {% for items in rows %}
+            <tbody>
+                <tr>
+                    <td>
+                        <form action="/completed_item" method="POST">
+                            <input id="item_id" name="item_id" value={{ items["item_id"] }} />
+                            {% if items["completed"] == 1 %}
+                            <input id="completed_checkbox" name="completed_checkbox" type="checkbox" onchange="submit()" checked/> 
+                            <input id="completed_value" name="completed_value" value=0 />
+                            {% else %}
+                            <input id="completed_checkbox" name="completed_checkbox" type="checkbox" onchange="submit()"/> 
+                            <input id="completed_value" name="completed_value" value=1 /> 
+                            {% endif %}
+                        </form>
+                    </td>
+                    <td>{{items["item_name"]}}</td>
+                    <td>{{items["quantity"]}}</td>
+                    <td>{{items["store_name"]}}</td>
+                    <td>{{items["store_adress"]}}</td>
+                </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href = "/">Go back to home page</a>
+        </html>
+</DOCTYPE>
